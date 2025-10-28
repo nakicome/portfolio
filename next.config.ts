@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
+import { withContentlayer } from "next-contentlayer";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+    reactStrictMode: true,
+    // すべてSSG前提なら cache: 'force-cache' なfetch設計を心がける
 };
 
-export default nextConfig;
+export default withContentlayer(nextConfig);
