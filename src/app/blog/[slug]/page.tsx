@@ -7,11 +7,11 @@ type Props = { params: { slug: string } };
 export const dynamic = "error"; // SSGのみ
 
 export function generateStaticParams() {
-    return allPosts.map((p) => ({slug: p.slug}));
+    return allPosts.map((post) => ({slug: post.slug}));
 }
 
 export function generateMetadata({params}: Props): Metadata {
-    const post = allPosts.find((p) => p.slug === params.slug);
+    const post = allPosts.find((post) => post.slug === params.slug);
     if (!post) return {};
     return {
         title: post.title,
@@ -26,7 +26,7 @@ export function generateMetadata({params}: Props): Metadata {
 }
 
 export default function PostPage({params}: Props) {
-    const post = allPosts.find((p) => p.slug === params.slug);
+    const post = allPosts.find((post) => post.slug === params.slug);
     if (!post) notFound();
 
     return (
