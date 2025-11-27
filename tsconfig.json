@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "types": ["contentlayer/generated"],
     "target": "ES2017",
     "lib": [
       "dom",
@@ -25,6 +27,9 @@
     "paths": {
       "@/*": [
         "./src/*"
+      ],
+      "contentlayer/generated": [
+        "./.contentlayer/generated"
       ]
     }
   },
@@ -34,7 +39,9 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts"
+    "**/*.mts",
+    ".contentlayer/generated",
+    "contentlayer.config.ts"
   ],
   "exclude": [
     "node_modules"
