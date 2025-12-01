@@ -1,38 +1,27 @@
 import {notFound} from "next/navigation";
-import {allPosts} from "contentlayer/generated";
 import type {Metadata} from "next";
+import {allPosts} from "contentlayer/generated";
+import {Mdx} from "@/components/mdx";
 
 type Props = { params: { slug: string } };
 
-export const dynamic = "error"; // SSGのみ
-
-type PostEntry = (typeof allPosts)[number];
-const posts = allPosts as PostEntry[];
-
+// パラメータ一覧の作成
 export function generateStaticParams() {
-    return posts.map((post) => ({slug: post.slug}));
+    return allPosts.map((p) => ({slug: p.slug}));
 }
 
 export function generateMetadata({params}: Props): Metadata {
-    const post = allPosts.find((post) => post.slug === params.slug);
+    const post = allPosts.find((p) => p.slug === params.slug);
     if (!post) return {};
     return {
         title: post.title,
         description: post.description ?? undefined,
-        openGraph: {
-            title: post.title,
-            description: post.description ?? undefined,
-            type: "article",
-            url: post.url,
-        },
     };
 }
 
 export default function PostPage({params}: Props) {
-    const post = allPosts.find((post) => post.slug === params.slug);
+    const post = allPosts.find((p) => p.slug === params.slug);
     if (!post) notFound();
-
-    const Body = post.body.component;
 
     return (
         <article className="prose prose-zinc max-w-none">
@@ -40,7 +29,7 @@ export default function PostPage({params}: Props) {
             <p className="text-sm text-zinc-500">
                 {new Date(post.date).toLocaleDateString("ja-JP")}
             </p>
-            <Body />
+            <Mdx code={post.body.code}/>
         </article>
     );
 }
