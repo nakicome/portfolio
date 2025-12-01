@@ -7,6 +7,7 @@ export const metadata: Metadata = {
     description: "Next.js SSG Blog",
 };
 
+// App Routerでは全ページ共通の枠をこのコンポーネントで定義
 export default function RootLayout({children}: { children: React.ReactNode }) {
     return (
         <html lang="ja">
