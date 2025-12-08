@@ -1,6 +1,5 @@
 "use client";
-
-import {useMDXComponent} from "next-contentlayer/hooks";
+import {useMDXComponent} from "next-contentlayer2/hooks";
 
 type Props = {
     code: string;
@@ -8,5 +7,10 @@ type Props = {
 
 export function Mdx({code}: Props) {
     const Component = useMDXComponent(code);
-    return <Component/>;
+    return (
+        <div className="mdx">
+            {/* eslint-disable-next-line react-hooks/static-components */}
+            <Component/>
+        </div>
+    );
 }
