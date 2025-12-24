@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SSG ブログ
 
-## Getting Started
+Next.js(App Router)で構築した SSG(Static Site Generation)ブログです。
+記事は MD/MDX ファイルとして管理し、気軽に技術発信できる運用を目指しています。
 
-First, run the development server:
+## 目的 / 背景
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### SSG ブログにした理由
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 技術発信を継続しやすくするため
+  CMS を用意せず、`content/posts/*.mdx`を編集してコミットするだけで記事を追加できる形にしています。
+- 運用コスト
+  静的生成を基本にすることで、ホスティングは安価で運用しやすい想定です。
+- 表示速度・安定性
+  生成済みの静的ページを配信するため、ページ表示が軽く、構成もシンプルになります。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 技術スタック
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Next.js(App Router)
+- TypeScript
+- Tailwind CSS
+- MDX
+- Vercel
+- GitHub Actions(CI 導入予定)
 
-## Learn More
+## 技術選定の理由
 
-To learn more about Next.js, take a look at the following resources:
+### Next.js を採用した理由
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- SSG / SEO との相性がよく、個人ブログの主流構成として情報量が多い
+  事例が豊富で、困ったときに解決しやすい点を重視しています。
+- 学習目的
+  App Router を含め、現場で経験できない Next.js を使って、設計・運用(CI/CD 含む)まで一通り経験する狙いがあります。
