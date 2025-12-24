@@ -33,6 +33,9 @@
     "typescript": "^5.9.3"
   },
   "pnpm": {
+    "onlyBuiltDependencies": [
+      "contentlayer2"
+    ],
     "overrides": {
       "esbuild": ">=0.25.0",
       "estree-util-value-to-estree": ">=3.3.3"
