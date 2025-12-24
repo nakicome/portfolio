@@ -1,9 +1,9 @@
-# SSG ブログ
+# SSGブログ
 
 Next.js(App Router)で構築したSSG(Static Site Generation)ブログです。
 記事はMD/MDXファイルとして管理し、気軽に技術発信できる運用を目指しています。
 
-## SSG ブログにした理由
+## SSGブログにした理由
 
 - 技術発信を継続しやすくするため
   `content/posts/*.mdx`を編集してコミットするだけで記事を追加できる形にしています。
@@ -23,7 +23,7 @@ Next.js(App Router)で構築したSSG(Static Site Generation)ブログです。
 
 ## 技術選定の理由
 
-### Next.js を採用した理由
+### Next.jsを採用した理由
 
 - SSG / SEO との相性がよく、個人ブログの主流構成として情報量が多い: 事例が豊富で、困ったときに解決しやすい点を重視しています。
 -
