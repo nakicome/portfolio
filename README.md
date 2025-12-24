@@ -1,7 +1,7 @@
 # SSG ブログ
 
-Next.js(App Router)で構築した SSG(Static Site Generation)ブログです。
-記事は MD/MDX ファイルとして管理し、気軽に技術発信できる運用を目指しています。
+Next.js(App Router)で構築したSSG(Static Site Generation)ブログです。
+記事はMD/MDXファイルとして管理し、気軽に技術発信できる運用を目指しています。
 
 ## SSG ブログにした理由
 
@@ -9,7 +9,7 @@ Next.js(App Router)で構築した SSG(Static Site Generation)ブログです。
   `content/posts/*.mdx`を編集してコミットするだけで記事を追加できる形にしています。
 - 運用コスト
   静的生成を基本にすることで、ホスティングは安価で運用しやすい想定です。
-- 表示速度・安定性
+- 表示速度
   生成済みの静的ページを配信するため、ページ表示が軽く、構成もシンプルになります。
 
 ## 技術スタック
@@ -19,22 +19,21 @@ Next.js(App Router)で構築した SSG(Static Site Generation)ブログです。
 - Tailwind CSS
 - MDX
 - Vercel
-- GitHub Actions(CI 導入予定)
+- GitHub Actions(CI導入予定)
 
 ## 技術選定の理由
 
 ### Next.js を採用した理由
 
-- SSG / SEO との相性がよく、個人ブログの主流構成として情報量が多い
-  事例が豊富で、困ったときに解決しやすい点を重視しています。
-- 学習目的
-  App Router を含め、現場で経験できない Next.js を使って、設計・運用(CI/CD 含む)まで一通り経験する狙いがあります。
+- SSG / SEO との相性がよく、個人ブログの主流構成として情報量が多い: 事例が豊富で、困ったときに解決しやすい点を重視しています。
+-
+  学習目的: App Router を含め、現場で経験できない Next.js を使って、設計・運用(CI/CD 含む)まで一通り経験する狙いがあります。
 
 ## 今後やりたいこと
 
 - デザインの修正
 - テストコードの実装
   - ユニットテスト
-  - E2E の検証
+  - E2Eの検証
 - コンポーネントの追加
-- CI/CD の仕組み
+- CI/CDの仕組み
