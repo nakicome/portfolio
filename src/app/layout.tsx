@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "reach",
+  title: "Blog",
   description: "技術とか日常とか",
 };
 

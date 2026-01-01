@@ -1,77 +1,39 @@
 "use client"
 
-import {ChangeEvent, useState} from "react"
+import {ChangeEvent, useMemo, useState} from "react"
 import {Input} from "@/components/ui/input"
 import {Search} from "lucide-react"
-import BlogCard from "@/components/blog-card"
+import BlogCard, {BlogPost} from "@/components/blog-card"
 import BlogPagination from "@/components/blog-pagination"
 import TagFilter from "@/components/tag-filter"
 
-// サンプルデータ
-const POSTS = [
-    {
-        id: 1,
-        title: "Next.js 16の新機能について",
-        date: "2025-03-15",
-        description: "Next.js 16で導入された新しいキャッシュAPIとReact 19.2の機能について詳しく解説します。",
-        tags: ["Next.js", "React", "Web開発"],
-    },
-    {
-        id: 2,
-        title: "TailwindCSS v4へのマイグレーションガイド",
-        date: "2025-03-10",
-        description: "TailwindCSS v4への移行手順と新機能の活用方法を実例を交えて紹介します。",
-        tags: ["TailwindCSS", "CSS", "Web開発"],
-    },
-    {
-        id: 3,
-        title: "TypeScriptの型安全性を高めるテクニック",
-        date: "2025-03-05",
-        description: "実践的なTypeScriptの型活用法と、より安全なコードを書くためのパターンを解説します。",
-        tags: ["TypeScript", "プログラミング"],
-    },
-    {
-        id: 4,
-        title: "Supabaseで構築する認証システム",
-        date: "2025-02-28",
-        description: "SupabaseのAuth機能を使った安全な認証システムの実装方法を段階的に説明します。",
-        tags: ["Supabase", "Database", "Web開発"],
-    },
-    {
-        id: 5,
-        title: "パフォーマンス最適化の実践的アプローチ",
-        date: "2025-02-20",
-        description: "Webアプリケーションのパフォーマンスを向上させるための具体的な手法とツールを紹介します。",
-        tags: ["パフォーマンス", "Web開発"],
-    },
-    {
-        id: 6,
-        title: "デザインシステムの構築と運用",
-        date: "2025-02-15",
-        description: "スケーラブルなデザインシステムを作成し、チームで効果的に運用する方法を解説します。",
-        tags: ["デザイン", "UI/UX"],
-    },
-]
+interface BlogListProps {
+    posts: BlogPost[]
+}
 
-const ALL_TAGS = Array.from(new Set(POSTS.flatMap((post) => post.tags)))
-
-export default function BlogList() {
+export default function BlogList({posts}: BlogListProps) {
     const [searchQuery, setSearchQuery] = useState("")
     const [selectedTags, setSelectedTags] = useState<string[]>([])
     const [currentPage, setCurrentPage] = useState(1)
     const postsPerPage = 5
 
-    // フィルタリング
-    const filteredPosts = POSTS.filter((post) => {
-        const matchesSearch =
-            post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            post.description.toLowerCase().includes(searchQuery.toLowerCase())
-        const matchesTags = selectedTags.length === 0 || selectedTags.some((tag) => post.tags.includes(tag))
-        return matchesSearch && matchesTags
-    })
+    const allTags = useMemo(() => {
+        return Array.from(new Set(posts.flatMap((post) => post.tags ?? []))).filter(Boolean)
+    }, [posts])
 
-    // ページネーション
-    const totalPages = Math.ceil(filteredPosts.length / postsPerPage)
+    const filteredPosts = useMemo(() => {
+        const q = searchQuery.toLowerCase()
+        return posts.filter((post) => {
+            const title = post.title?.toLowerCase() ?? ""
+            const description = post.description?.toLowerCase() ?? ""
+            const tags = post.tags ?? []
+            const matchesSearch = title.includes(q) || description.includes(q)
+            const matchesTags = selectedTags.length === 0 || selectedTags.some((tag) => tags.includes(tag))
+            return matchesSearch && matchesTags
+        })
+    }, [posts, searchQuery, selectedTags])
+
+    const totalPages = Math.ceil(filteredPosts.length / postsPerPage) || 1
     const startIndex = (currentPage - 1) * postsPerPage
     const paginatedPosts = filteredPosts.slice(startIndex, startIndex + postsPerPage)
 
@@ -98,13 +60,13 @@ export default function BlogList() {
                     />
                 </div>
 
-                <TagFilter tags={ALL_TAGS} selectedTags={selectedTags} onTagToggle={handleTagToggle}/>
+                <TagFilter tags={allTags} selectedTags={selectedTags} onTagToggle={handleTagToggle}/>
             </div>
 
             {/* 記事リスト */}
             <div className="space-y-12">
                 {paginatedPosts.length > 0 ? (
-                    paginatedPosts.map((post) => <BlogCard key={post.id} post={post}/>)
+                    paginatedPosts.map((post) => <BlogCard key={post.slug} post={post}/>)
                 ) : (
                     <div className="py-24 text-center">
                         <p className="text-muted-foreground">記事が見つかりませんでした</p>

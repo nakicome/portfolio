@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { allPosts } from "contentlayer/generated";
+import BlogList from "@/components/blog-list";
 
 export default function BlogIndex() {
   const posts = allPosts
@@ -8,7 +9,7 @@ export default function BlogIndex() {
 
   return (
     <div className="space-y-8">
-      <h1 className="text-2xl font-bold">reach</h1>
+      <h1 className="text-2xl font-bold">Blog</h1>
       <ul className="space-y-6">
         {posts.map((p) => (
           <li key={p.slug} className="group">
