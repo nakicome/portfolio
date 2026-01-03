@@ -3,13 +3,13 @@
 import Link from "next/link"
 import type {Post} from "contentlayer/generated"
 
-export type BlogPost = Pick<Post, "slug" | "url" | "title" | "date" | "description" | "tags"> & {
+export type BlogPost = Pick<Post, "slug" | "title" | "date" | "description" | "tags"> & {
     description?: string | null
     tags?: string[] | null
 }
 
 export default function BlogCard({post}: {post: BlogPost}) {
-    const href = post.url ?? `/blog/${post.slug}`
+    const href = `/posts/${post.slug}`
     const tags = post.tags ?? []
     return (
         <article className="rounded-lg border border-border bg-card p-6 shadow-sm">
