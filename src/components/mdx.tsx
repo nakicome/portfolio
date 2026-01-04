@@ -6,10 +6,9 @@ type Props = {
 };
 
 export function Mdx({ code }: Props) {
+    if (!code) {
+        return null;
+    }
     const Component = useMDXComponent(code);
-    return (
-        <div className="mdx">
-            <Component />
-        </div>
-    );
+    return <Component />;
 }

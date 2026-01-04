@@ -5,6 +5,7 @@ const config: Config = {
     content: [
         "./src/**/*.{ts,tsx}",
         "./app/**/*.{ts,tsx}",
+        ".contentlayer/**/*.{js,ts,jsx,tsx,md,mdx}",
     ],
     theme: {extend: {}},
     plugins: [typography],
