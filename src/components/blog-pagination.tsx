@@ -1,6 +1,6 @@
 "use client"
 
-import {ChevronLeft, ChevronRight} from "lucide-react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 
 interface BlogPaginationProps {
     currentPage: number
@@ -8,7 +8,7 @@ interface BlogPaginationProps {
     onPageChange: (page: number) => void
 }
 
-export default function BlogPagination({currentPage, totalPages, onPageChange}: BlogPaginationProps) {
+export default function BlogPagination({ currentPage, totalPages, onPageChange }: BlogPaginationProps) {
     return (
         <div className="flex items-center justify-center gap-2">
             <button
@@ -17,17 +17,16 @@ export default function BlogPagination({currentPage, totalPages, onPageChange}: 
                 className="flex size-10 items-center justify-center rounded-sm border border-border text-foreground transition-colors hover:bg-secondary disabled:opacity-30 disabled:hover:bg-transparent"
                 aria-label="前のページ"
             >
-                <ChevronLeft className="size-4"/>
+                <ChevronLeft className="size-4" />
             </button>
 
             <div className="flex items-center gap-1">
-                {Array.from({length: totalPages}, (_, i) => i + 1).map((page) => (
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                     <button
                         key={page}
                         onClick={() => onPageChange(page)}
-                        className={`flex size-10 items-center justify-center rounded-sm text-sm font-medium transition-colors ${
-                            currentPage === page ? "bg-accent text-accent-foreground" : "text-foreground hover:bg-secondary"
-                        }`}
+                        className={`flex size-10 items-center justify-center rounded-sm text-sm font-medium transition-colors ${currentPage === page ? "bg-accent text-accent-foreground" : "text-foreground hover:bg-secondary"
+                            }`}
                     >
                         {page}
                     </button>
@@ -40,7 +39,7 @@ export default function BlogPagination({currentPage, totalPages, onPageChange}: 
                 className="flex size-10 items-center justify-center rounded-sm border border-border text-foreground transition-colors hover:bg-secondary disabled:opacity-30 disabled:hover:bg-transparent"
                 aria-label="次のページ"
             >
-                <ChevronRight className="size-4"/>
+                <ChevronRight className="size-4" />
             </button>
         </div>
     )

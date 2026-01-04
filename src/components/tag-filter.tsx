@@ -6,7 +6,7 @@ interface TagFilterProps {
     onTagToggle: (tag: string) => void
 }
 
-export default function TagFilter({tags, selectedTags, onTagToggle}: TagFilterProps) {
+export default function TagFilter({ tags, selectedTags, onTagToggle }: TagFilterProps) {
     return (
         <div className="flex flex-wrap gap-2">
             {tags.map((tag) => {

@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import type {Post} from "contentlayer/generated"
+import type { Post } from "contentlayer/generated"
 
 export type BlogPost = Pick<Post, "slug" | "title" | "date" | "description" | "tags"> & {
     description?: string | null
@@ -16,7 +16,7 @@ function formatDate(dateString: string): string {
     return `${year}/${month}/${day}`
 }
 
-export default function BlogCard({post}: {post: BlogPost}) {
+export default function BlogCard({ post }: { post: BlogPost }) {
     const href = `/${post.slug}`
     const tags = post.tags ?? []
     return (

@@ -1,6 +1,6 @@
 import BlogHeader from "@/components/blog-header"
 import BlogList from "@/components/blog-list"
-import {allPosts} from "contentlayer/generated"
+import { allPosts } from "contentlayer/generated"
 
 export default function BlogPage() {
     const posts = allPosts
@@ -9,9 +9,9 @@ export default function BlogPage() {
 
     return (
         <div className="min-h-screen bg-background">
-            <BlogHeader/>
+            <BlogHeader />
             <main className="mx-auto max-w-5xl px-6 py-16 md:px-8 lg:px-12">
-                <BlogList posts={posts}/>
+                <BlogList posts={posts} />
             </main>
         </div>
     )

@@ -1,9 +1,9 @@
 "use client"
 
 import Link from "next/link"
-import {useState} from "react"
+import { useState } from "react"
 import Image from "next/image"
-import {Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger} from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 
 export default function BlogHeader() {
     const [open, setOpen] = useState(false)

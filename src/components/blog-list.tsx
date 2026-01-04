@@ -1,9 +1,9 @@
 "use client"
 
-import {ChangeEvent, useMemo, useState} from "react"
-import {Input} from "@/components/ui/input"
-import {Search} from "lucide-react"
-import BlogCard, {BlogPost} from "@/components/blog-card"
+import { ChangeEvent, useMemo, useState } from "react"
+import { Input } from "@/components/ui/input"
+import { Search } from "lucide-react"
+import BlogCard, { BlogPost } from "@/components/blog-card"
 import BlogPagination from "@/components/blog-pagination"
 import TagFilter from "@/components/tag-filter"
 
@@ -11,7 +11,7 @@ interface BlogListProps {
     posts: BlogPost[]
 }
 
-export default function BlogList({posts}: BlogListProps) {
+export default function BlogList({ posts }: BlogListProps) {
     const [searchQuery, setSearchQuery] = useState("")
     const [selectedTags, setSelectedTags] = useState<string[]>([])
     const [currentPage, setCurrentPage] = useState(1)
@@ -47,7 +47,7 @@ export default function BlogList({posts}: BlogListProps) {
             {/* 検索とフィルタ */}
             <div className="space-y-8">
                 <div className="relative">
-                    <Search className="absolute left-4 top-1/2 size-5 -translate-y-1/2 text-muted-foreground"/>
+                    <Search className="absolute left-4 top-1/2 size-5 -translate-y-1/2 text-muted-foreground" />
                     <Input
                         type="search"
                         placeholder="記事を検索..."
@@ -60,13 +60,13 @@ export default function BlogList({posts}: BlogListProps) {
                     />
                 </div>
 
-                <TagFilter tags={allTags} selectedTags={selectedTags} onTagToggle={handleTagToggle}/>
+                <TagFilter tags={allTags} selectedTags={selectedTags} onTagToggle={handleTagToggle} />
             </div>
 
             {/* 記事リスト */}
             <div className="space-y-12">
                 {paginatedPosts.length > 0 ? (
-                    paginatedPosts.map((post) => <BlogCard key={post.slug} post={post}/>)
+                    paginatedPosts.map((post) => <BlogCard key={post.slug} post={post} />)
                 ) : (
                     <div className="py-24 text-center">
                         <p className="text-muted-foreground">記事が見つかりませんでした</p>
@@ -76,7 +76,7 @@ export default function BlogList({posts}: BlogListProps) {
 
             {/* ページネーション */}
             {totalPages > 1 && (
-                <BlogPagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage}/>
+                <BlogPagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
             )}
         </div>
     )

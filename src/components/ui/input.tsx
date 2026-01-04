@@ -2,9 +2,8 @@
 
 import * as React from "react"
 
-// Minimal input component with tailwind-friendly defaults
 const Input = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(function Input(
-    {className = "", ...props},
+    { className = "", ...props },
     ref,
 ) {
     return (
@@ -16,4 +15,4 @@ const Input = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLI
     )
 })
 
-export {Input}
+export { Input }

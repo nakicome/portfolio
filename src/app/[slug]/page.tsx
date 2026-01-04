@@ -1,7 +1,7 @@
-import {notFound} from "next/navigation"
+import { notFound } from "next/navigation"
 import Link from "next/link"
-import {allPosts} from "contentlayer/generated"
-import {Mdx} from "@/components/mdx"
+import { allPosts } from "contentlayer/generated"
+import { Mdx } from "@/components/mdx"
 import BlogHeader from "@/components/blog-header"
 
 export async function generateStaticParams() {
@@ -20,8 +20,8 @@ function formatDate(dateString: string): string {
     return `${year}/${month}/${day}`
 }
 
-export default async function PostPage({params}: {params: Promise<{slug: string}>}) {
-    const {slug} = await params
+export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params
     const post = allPosts.find((p) => p.slug === slug)
 
     if (!post) {
@@ -30,7 +30,7 @@ export default async function PostPage({params}: {params: Promise<{slug: string}
 
     return (
         <div className="min-h-screen bg-background">
-            <BlogHeader/>
+            <BlogHeader />
             <main className="mx-auto max-w-3xl px-6 py-16 md:px-8 lg:px-12">
                 <article className="space-y-8">
                     <header className="space-y-4">
@@ -49,7 +49,7 @@ export default async function PostPage({params}: {params: Promise<{slug: string}
                         </div>
                     </header>
                     <div className="prose prose-slate dark:prose-invert max-w-none">
-                        <Mdx code={post.body.code}/>
+                        <Mdx code={post.body.code} />
                     </div>
                     <div className="pt-8">
                         <Link href="/" className="text-primary hover:underline">
