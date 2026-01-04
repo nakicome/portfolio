@@ -1,4 +1,5 @@
 import {notFound} from "next/navigation"
+import Link from "next/link"
 import {allPosts} from "contentlayer/generated"
 import {Mdx} from "@/components/mdx"
 import BlogHeader from "@/components/blog-header"
@@ -9,6 +10,14 @@ export async function generateStaticParams() {
         .map((post) => ({
             slug: post.slug,
         }))
+}
+
+function formatDate(dateString: string): string {
+    const date = new Date(dateString)
+    const year = date.getFullYear()
+    const month = String(date.getMonth() + 1).padStart(2, "0")
+    const day = String(date.getDate()).padStart(2, "0")
+    return `${year}/${month}/${day}`
 }
 
 export default async function PostPage({params}: {params: Promise<{slug: string}>}) {
@@ -27,7 +36,7 @@ export default async function PostPage({params}: {params: Promise<{slug: string}
                     <header className="space-y-4">
                         <h1 className="text-4xl font-bold tracking-tight text-foreground">{post.title}</h1>
                         <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                            <time dateTime={post.date}>{post.date}</time>
+                            <time dateTime={post.date}>{formatDate(post.date)}</time>
                             {post.tags && post.tags.length > 0 && (
                                 <div className="flex flex-wrap gap-2">
                                     {post.tags.map((tag) => (
@@ -38,10 +47,14 @@ export default async function PostPage({params}: {params: Promise<{slug: string}
                                 </div>
                             )}
                         </div>
-                        {post.description && <p className="text-lg text-muted-foreground">{post.description}</p>}
                     </header>
                     <div className="prose prose-slate dark:prose-invert max-w-none">
                         <Mdx code={post.body.code}/>
+                    </div>
+                    <div className="pt-8">
+                        <Link href="/" className="text-primary hover:underline">
+                            ← 一覧に戻る
+                        </Link>
                     </div>
                 </article>
             </main>

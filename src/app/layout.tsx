@@ -17,7 +17,7 @@ export default function RootLayout({
       <body>
         <main>{children}</main>
         <footer className="border-t mt-16">
-          <div className="mx-auto max-w-3xl px-4 py-8 text-sm text-zinc-500">
+          <div className="mx-auto max-w-3xl px-4 py-8 text-sm text-zinc-500 text-center">
             © {new Date().getFullYear()} nakicome
           </div>
         </footer>

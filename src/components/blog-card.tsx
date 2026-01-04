@@ -8,6 +8,14 @@ export type BlogPost = Pick<Post, "slug" | "title" | "date" | "description" | "t
     tags?: string[] | null
 }
 
+function formatDate(dateString: string): string {
+    const date = new Date(dateString)
+    const year = date.getFullYear()
+    const month = String(date.getMonth() + 1).padStart(2, "0")
+    const day = String(date.getDate()).padStart(2, "0")
+    return `${year}/${month}/${day}`
+}
+
 export default function BlogCard({post}: {post: BlogPost}) {
     const href = `/${post.slug}`
     const tags = post.tags ?? []
@@ -19,7 +27,7 @@ export default function BlogCard({post}: {post: BlogPost}) {
                         {post.title}
                     </Link>
                 </h2>
-                <time className="text-sm text-muted-foreground">{post.date}</time>
+                <time className="text-sm text-muted-foreground">{formatDate(post.date)}</time>
             </div>
             {post.description && <p className="mt-3 text-muted-foreground">{post.description}</p>}
             {tags.length > 0 && (
