@@ -9,7 +9,7 @@ export type BlogPost = Pick<Post, "slug" | "title" | "date" | "description" | "t
 }
 
 export default function BlogCard({post}: {post: BlogPost}) {
-    const href = `/posts/${post.slug}`
+    const href = `/${post.slug}`
     const tags = post.tags ?? []
     return (
         <article className="rounded-lg border border-border bg-card p-6 shadow-sm">
